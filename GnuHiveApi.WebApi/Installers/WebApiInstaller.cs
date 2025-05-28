@@ -2,6 +2,13 @@
 using GnuHiveApi.Common;
 using GnuHiveApi.Common.config;
 using GnuHiveApi.Common.DateTime;
+using GnuHiveApi.Common.Extensions;
+using GnuHiveApi.Common.Logging;
+using GnuHiveApi.Common.Utils;
+using GnuHiveApi.Persistence.Command;
+using GnuHiveApi.Persistence.Common;
+using NLog;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace GnuHiveApi.WebApi.Installers;
 
@@ -35,7 +42,7 @@ public abstract class WebApiInstaller
         this.RegisterPersistence(services);
         this.RegisterInfrastructure(services, builderConfiguration);
         this.RegisterIntegrations(services);
-        this.RegisterApi(services);
+        this.RegisterFacade(services);
         this.RegisterWebApi(services);
         this.RegisterMappers(services);
         this.RegisterLogging(services);
@@ -56,61 +63,85 @@ public abstract class WebApiInstaller
 
     protected virtual void RegisterPersistence(IServiceCollection services)
     {
+        services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
+        services.AddScoped<IDatabaseConnectionProvider, SqlDatabaseConnectionProvider>();
         
+        // services.RegisterByConvention(this._dapperAssembly, ".*DataReader");
+        // services.RegisterByConvention(this._adoAssembly, ".*Command");
     }
     
     protected virtual void RegisterInfrastructure(IServiceCollection services, IConfiguration builderConfiguration)
     {
-        
+        // TODO Add when needed
     }
     
     protected virtual void RegisterIntegrations(IServiceCollection services)
     {
-        
+        // TODO Add when needed
     }
     
-    protected virtual void RegisterApi(IServiceCollection services)
+    protected virtual void RegisterFacade(IServiceCollection services)
     {
-        
+        // TODO Add when needed
     }
     
     protected virtual void RegisterWebApi(IServiceCollection services)
     {
-        
+        services.AddControllers();
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen();
     }
     
     protected virtual void RegisterMappers(IServiceCollection services)
     {
-        
+        // TODO Add when needed
     }
     
     protected virtual void RegisterLogging(IServiceCollection services)
     {
-        
+        services.AddScoped<ILogLogger, NLogLogger>();
+        services.AddSingleton<NLog.ILogger>(sp =>
+        {
+            var config = sp.GetService<IApplicationConfig>();
+            var logMapper = sp.GetRequiredService<NLogLogLevelMapper>();
+            
+            var logger = LogManager.Setup(x => x.LoadConfiguration(builder =>
+            {
+                builder.Configuration =
+                    new NLogConfigurationBuilder(config!.AppName, config, logMapper)
+                        .WithDbLogging(config.MainDbConnectionString)
+                        .WithConsoleLogging()
+                        .Build();
+
+                LogManager.Configuration = builder.Configuration;
+            })).GetLogger(config!.AppName ?? "WebApi");
+            
+            return logger;
+        });
     }
     
     protected virtual void RegisterValidators(IServiceCollection services)
     {
-        
+        // TODO Add when needed
     }
     
     protected virtual void RegisterHttpClients(IServiceCollection services)
     {
-        
+        // TODO Add when needed
     }
     
     protected virtual void RegisterSanitizers(IServiceCollection services)
     {
-        
+        // TODO Add when needed
     }
     
     protected virtual void RegistrationBackgroundJobs(IServiceCollection services)
     {
-        
+        // TODO Add when needed
     }
     
     protected virtual void RegisterDomainServices(IServiceCollection services)
     {
-        
+        // TODO Add when needed
     }
 }

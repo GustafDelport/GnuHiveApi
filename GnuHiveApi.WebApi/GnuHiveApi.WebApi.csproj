@@ -18,6 +18,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\GnuHiveApi.Common\GnuHiveApi.Common.csproj" />
+      <ProjectReference Include="..\GnuHiveApi.Persistence.Command\GnuHiveApi.Persistence.Command.csproj" />
+      <ProjectReference Include="..\GnuHiveApi.Persistence\GnuHiveApi.Persistence.csproj" />
     </ItemGroup>
 
     <ItemGroup>
