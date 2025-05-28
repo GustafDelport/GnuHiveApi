@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "IHlzQY6tMnpqNbC992vo9tAmnJqy9nBvA+sQvE8z6iA=",
+  "Source": "GnuHiveApi.WebApi",
+  "BasePath": "_content/GnuHiveApi.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
