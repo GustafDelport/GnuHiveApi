@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\GnuHiveApi.WebApi.props" />
-</Project>

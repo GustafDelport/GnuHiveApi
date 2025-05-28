@@ -12,8 +12,8 @@ public abstract class WebApiInstaller
 
     public WebApiInstaller()
     {
-        _adoAssembly = Assembly.GetExecutingAssembly();
-        _dapperAssembly = Assembly.GetExecutingAssembly();
+        this._adoAssembly = Assembly.GetExecutingAssembly();
+        this._dapperAssembly = Assembly.GetExecutingAssembly();
     }
 
     public static WebApiInstaller Create(string environment)
