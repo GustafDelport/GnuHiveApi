@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn> <!-- Optional: Suppresses warnings for missing XML comments -->
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.15"/>
+        <PackageReference Include="Microsoft.AspNetCore.SignalR.StackExchangeRedis" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.0" />
+        <PackageReference Include="NLog" Version="5.0.5" />
+        <PackageReference Include="NLog.Database" Version="5.0.5" />
+        <PackageReference Include="NLog.Extensions.Hosting" Version="5.0.4" />
+        <PackageReference Include="NLog.Web.AspNetCore" Version="5.1.5" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\GnuHiveApi.Common\GnuHiveApi.Common.csproj" />
+      <ProjectReference Include="..\GnuHiveApi.Domain.Common\GnuHiveApi.Domain.Common.csproj" />
+      <ProjectReference Include="..\GnuHiveApi.Persistence.Command\GnuHiveApi.Persistence.Command.csproj" />
+      <ProjectReference Include="..\GnuHiveApi.Persistence\GnuHiveApi.Persistence.csproj" />
+      <ProjectReference Include="..\GnuHiveApi.UseCaseFacade\GnuHiveApi.UseCaseFacade.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\SharedConfig\appsettings.Development.json">
+        <Link>SharedConfig\appsettings.Development.json</Link>
+      </Content>
+      <Content Include="..\SharedConfig\appsettings.json">
+        <Link>SharedConfig\appsettings.json</Link>
+      </Content>
+    </ItemGroup>
+
+</Project>
