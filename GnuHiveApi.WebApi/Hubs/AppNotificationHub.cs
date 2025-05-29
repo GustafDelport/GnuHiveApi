@@ -6,5 +6,5 @@ public class AppNotificationHub : Hub
 {
     public static string HUB_ENDPOINT = "/signalr/hub/app";
     
-    // TODO 
+    // TODO When adding SignalR
 }

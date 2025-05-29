@@ -40,10 +40,12 @@ var forwardedHeadersOptions = new ForwardedHeadersOptions
 forwardedHeadersOptions.KnownNetworks.Clear();
 forwardedHeadersOptions.KnownProxies.Clear();
 app.UseForwardedHeaders(forwardedHeadersOptions);
-app.UseHttpLogging();
 app.UseStaticFiles();
 
-app.MapHub<AppNotificationHub>(AppNotificationHub.HUB_ENDPOINT);
+// app.UseHttpLogging();
+
+// TODO When adding SignalR
+//app.MapHub<AppNotificationHub>(AppNotificationHub.HUB_ENDPOINT);
 
 app.UseSwagger(c =>
     c.PreSerializeFilters.Add((swaggerDoc, httpReq) => swaggerDoc.Servers =

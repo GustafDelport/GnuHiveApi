@@ -26,6 +26,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GnuHiveApi.Persistence.Quer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GnuHiveApi.Persistence.Query.EF", "GnuHiveApi.Persistence.Query.EF\GnuHiveApi.Persistence.Query.EF.csproj", "{5B3B3650-1586-4B14-8C28-7106F71EFACF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution  Items", "Solution  Items", "{A9955B56-B37B-4534-8F41-C9F7156B74F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{04867BCE-3D24-4954-8BF8-1D24941192C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
