@@ -46,7 +46,6 @@ public class MqttBackgroundService : BackgroundService
             Console.WriteLine("Connected to MQTT Broker.");
             
             await this._mqttClient.SubscribeAsync(ListenerTopic.GreenHouseSensorData, cancellationToken: stoppingToken);
-            
             Console.WriteLine($"Subscribed to topic: {ListenerTopic.GreenHouseSensorData}");
         };
 
@@ -77,11 +76,11 @@ public class MqttBackgroundService : BackgroundService
 
     public override async Task StopAsync(CancellationToken cancellationToken)
     {
-        /*if (this._mqttClient?.IsConnected == true)
+        if (this._mqttClient?.IsConnected == true)
         {
             await this._mqttClient.DisconnectAsync(cancellationToken: cancellationToken);
         }
 
-        await base.StopAsync(cancellationToken);*/
+        await base.StopAsync(cancellationToken);
     }
 }
