@@ -10,14 +10,12 @@ namespace GnuHiveApi.UseCaseFacade.GreenHouse;
 public class GreenHouseUseCaseFacade : IGreenHouseUseCaseFacade
 {
     private readonly IMqttPublisherService _mqttPublisherService;
-    private readonly ILogLogger _logger;
+    //private readonly ILogLogger _logger;
 
     public GreenHouseUseCaseFacade(
-        IMqttPublisherService mqttPublisherService,
-        ILogLogger logger)
+        IMqttPublisherService mqttPublisherService)
     {
         this._mqttPublisherService = mqttPublisherService;
-        this._logger = logger;
     }
 
     public async Task<ErrorOr<Success>> GetSensoryDataInRangeAsync(DateTime fromDate, DateTime toDate)
@@ -33,11 +31,11 @@ public class GreenHouseUseCaseFacade : IGreenHouseUseCaseFacade
 
         if (publishResult.IsError)
         {
-            this._logger.Error(publishResult.FirstError);
+            //this._logger.Error(publishResult.FirstError);
             return publishResult.FirstError;
         }
 
-        this._logger.Info($"Message: {genericMessage} => publish result: {publishResult.Value}");
+        //this._logger.Info($"Message: {genericMessage} => publish result: {publishResult.Value}");
         return Result.Success;
     }
 
@@ -49,11 +47,11 @@ public class GreenHouseUseCaseFacade : IGreenHouseUseCaseFacade
 
         if (publishResult.IsError)
         {
-            this._logger.Error(publishResult.FirstError);
+            //this._logger.Error(publishResult.FirstError);
             return publishResult.FirstError;
         }
 
-        this._logger.Info($"Message: {genericMessage} => publish result: {publishResult.Value}");
+        //this._logger.Info($"Message: {genericMessage} => publish result: {publishResult.Value}");
         return Result.Success;
     }
 }

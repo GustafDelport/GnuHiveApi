@@ -9,19 +9,15 @@ using MQTTnet.Client;
 
 namespace GnuHiveApi.Integrations.MqttPublisher;
 
+// TODO : NB => This is not perfect when you await this._mqttClient.ConnectAsync(options); you disconnect after pub it might be the scoped lifecycle. Try to find a way merge the background listener and this pub service to use the same IMqttClient or different once.
 public class MqttPublisherService : IMqttPublisherService
 {
-    private IMqttClient _mqttClient;
     private readonly IApplicationConfig _config;
-    private readonly ILogLogger _logger;
-
-    public MqttPublisherService(IMqttClient mqttClient,
-        IApplicationConfig config,
-        ILogLogger logger)
+    private IMqttClient? _mqttClient;
+    
+    public MqttPublisherService(IApplicationConfig config)
     {
-        this._mqttClient = mqttClient;
         this._config = config;
-        this._logger = logger;
     }
 
     public Task<ErrorOr<Success>> SetModuleStateAsync(string genericPublisherMessage, string topic)
@@ -47,22 +43,19 @@ public class MqttPublisherService : IMqttPublisherService
             .WithTlsOptions(o => o.UseTls())
             .Build();
         
+        var message = new MqttApplicationMessageBuilder()
+            .WithTopic(topic)
+            .WithPayload(genericPublisherMessage)
+            .Build();
+
         try
         {
             await this._mqttClient.ConnectAsync(options);
-            var message = new MqttApplicationMessageBuilder()
-                .WithTopic(topic)
-                .WithPayload(genericPublisherMessage)
-                .Build();
-            
             await this._mqttClient.PublishAsync(message);
-            await this._mqttClient.DisconnectAsync();
-            
             return Result.Success;
         }
         catch (Exception ex)
         {
-            this._logger.Error(ex.GetFullErrorMessage());
             return Error.Unexpected(description: "Unable to connect to the MQTT broker.");
         }
     }
