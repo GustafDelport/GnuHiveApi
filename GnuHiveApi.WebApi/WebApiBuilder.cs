@@ -57,42 +57,6 @@ public class WebApiBuilder
                 options.SubstituteApiVersionInUrl = true;
             });
         
-        builder.Services.AddSwaggerGen(o =>
-        {
-            // TODO Fix this to have swagger comments
-            /*var filePath = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            o.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, filePath));*/
-
-            o.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
-
-            o.OperationFilter<SwaggerDefaultValues>();
-
-            /*o.AddSecurityDefinition("Bearer",
-                new OpenApiSecurityScheme
-                {
-                    In = ParameterLocation.Header,
-                    Description = "Please insert JWT with Bearer into field",
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey
-                });
-
-            // Add bearer token to each endpoint
-            o.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
-                {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference { Id = "Bearer", Type = ReferenceType.SecurityScheme }
-                    },
-                    Array.Empty<string>()
-                }
-            });*/
-
-            o.CustomSchemaIds(type => type.ToString());
-        });
-        
-        builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerGenOptions>();
-        
         builder.Logging.ClearProviders();
         ConfigureExtensions.UseNLog(AspNetExtensions.UseNLog(builder.Host));
         builder.Logging.AddConsole();

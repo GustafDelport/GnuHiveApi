@@ -7,7 +7,10 @@ using GnuHiveApi.Common.Logging;
 using GnuHiveApi.Common.Utils;
 using GnuHiveApi.Persistence.Command;
 using GnuHiveApi.Persistence.Common;
+using GnuHiveApi.WebApi.Swagger;
+using Microsoft.Extensions.Options;
 using NLog;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace GnuHiveApi.WebApi.Installers;
@@ -90,6 +93,41 @@ public abstract class WebApiInstaller
         services.AddControllers();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+        
+        services.AddSwaggerGen(o =>
+        {
+            var filePath = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            o.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, filePath));
+
+            o.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+
+            o.OperationFilter<SwaggerDefaultValues>();
+
+            /*o.AddSecurityDefinition("Bearer",
+                new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Please insert JWT with Bearer into field",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+            // Add bearer token to each endpoint
+            o.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference { Id = "Bearer", Type = ReferenceType.SecurityScheme }
+                    },
+                    Array.Empty<string>()
+                }
+            });*/
+
+            o.CustomSchemaIds(type => type.ToString());
+        });
+        
+        services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerGenOptions>();
     }
     
     protected virtual void RegisterMappers(IServiceCollection services)
