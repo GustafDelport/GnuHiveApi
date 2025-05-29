@@ -1,7 +1,9 @@
-﻿using GnuHiveApi.BackgroundProcessing.Constants;
-using GnuHiveApi.Common.Logging;
-using System.Text;
+﻿using System.Text;
+using GnuHiveApi.BackgroundProcessing.Constants;
+using GnuHiveApi.Common.config;
 using GnuHiveApi.Common.Extensions;
+using HiveMQtt.Client;
+using HiveMQtt.Client.Options;
 using Microsoft.Extensions.Hosting;
 using MQTTnet;
 using MQTTnet.Client;
@@ -10,16 +12,27 @@ namespace GnuHiveApi.BackgroundProcessing.BackgroundListeners;
 
 public class MqttBackgroundService : BackgroundService
 {
+    private IApplicationConfig _config;
     private IMqttClient? _mqttClient;
+
+    public MqttBackgroundService(IApplicationConfig config)
+    {
+        this._config = config;
+    }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         var factory = new MqttFactory();
         this._mqttClient = factory.CreateMqttClient();
+        
+        /*var options = new MqttClientOptionsBuilder()
+            .WithWebSocketServer(o => o.WithUri(this._config.HiveMq.WebSocket))
+            .Build();*/
 
         var options = new MqttClientOptionsBuilder()
             .WithClientId("dotnetClient")
-            .WithTcpServer("broker.hivemq.com", 1883) // Or use your broker IP and port
+            .WithTcpServer(this._config.HiveMq.Url, this._config.HiveMq.Port) // Or use your broker IP and port
+            .WithCredentials(this._config.HiveMq.UserName, this._config.HiveMq.Password)
             .WithCleanSession()
             .Build();
 
@@ -69,11 +82,11 @@ public class MqttBackgroundService : BackgroundService
 
     public override async Task StopAsync(CancellationToken cancellationToken)
     {
-        if (this._mqttClient?.IsConnected == true)
+        /*if (this._mqttClient?.IsConnected == true)
         {
             await this._mqttClient.DisconnectAsync(cancellationToken: cancellationToken);
         }
 
-        await base.StopAsync(cancellationToken);
+        await base.StopAsync(cancellationToken);*/
     }
 }
