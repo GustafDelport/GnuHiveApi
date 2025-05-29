@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using GnuHiveApi.BackgroundProcessing.BackgroundListeners;
 using GnuHiveApi.Common;
 using GnuHiveApi.Common.config;
 using GnuHiveApi.Common.DateTime;
@@ -177,6 +178,7 @@ public abstract class WebApiInstaller
     protected virtual void RegistrationBackgroundJobs(IServiceCollection services)
     {
         // TODO Add when needed
+        services.AddHostedService<MqttBackgroundService>();
     }
     
     protected virtual void RegisterDomainServices(IServiceCollection services)

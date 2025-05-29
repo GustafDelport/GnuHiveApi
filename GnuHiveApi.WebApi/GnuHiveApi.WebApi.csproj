@@ -24,6 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\GnuHiveApi.BackgroundProcessing\GnuHiveApi.BackgroundProcessing.csproj" />
       <ProjectReference Include="..\GnuHiveApi.Common\GnuHiveApi.Common.csproj" />
       <ProjectReference Include="..\GnuHiveApi.Domain.Common\GnuHiveApi.Domain.Common.csproj" />
       <ProjectReference Include="..\GnuHiveApi.Persistence.Command\GnuHiveApi.Persistence.Command.csproj" />
