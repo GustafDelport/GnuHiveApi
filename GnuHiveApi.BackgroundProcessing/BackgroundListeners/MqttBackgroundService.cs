@@ -1,6 +1,6 @@
 ﻿using System.Text;
-using GnuHiveApi.BackgroundProcessing.Constants;
 using GnuHiveApi.Common.config;
+using GnuHiveApi.Common.Constants;
 using GnuHiveApi.Common.Extensions;
 using Microsoft.Extensions.Hosting;
 using MQTTnet;
@@ -45,8 +45,8 @@ public class MqttBackgroundService : BackgroundService
         {
             Console.WriteLine("Connected to MQTT Broker.");
             
-            await this._mqttClient.SubscribeAsync(ListenerTopic.GreenHouseSensorData, cancellationToken: stoppingToken);
-            Console.WriteLine($"Subscribed to topic: {ListenerTopic.GreenHouseSensorData}");
+            await this._mqttClient.SubscribeAsync(MqttTopics.GreenHouseSensorData, cancellationToken: stoppingToken);
+            Console.WriteLine($"Subscribed to topic: {MqttTopics.GreenHouseSensorData}");
         };
 
         this._mqttClient.DisconnectedAsync += e =>
