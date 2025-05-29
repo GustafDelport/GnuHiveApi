@@ -14,6 +14,7 @@
     <ItemGroup>
         <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.15"/>
+        <PackageReference Include="Microsoft.AspNetCore.SignalR.StackExchangeRedis" Version="8.0.0" />
         <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.0" />
         <PackageReference Include="NLog" Version="5.0.5" />
         <PackageReference Include="NLog.Database" Version="5.0.5" />
@@ -24,6 +25,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\GnuHiveApi.Common\GnuHiveApi.Common.csproj" />
+      <ProjectReference Include="..\GnuHiveApi.Domain.Common\GnuHiveApi.Domain.Common.csproj" />
       <ProjectReference Include="..\GnuHiveApi.Persistence.Command\GnuHiveApi.Persistence.Command.csproj" />
       <ProjectReference Include="..\GnuHiveApi.Persistence\GnuHiveApi.Persistence.csproj" />
       <ProjectReference Include="..\GnuHiveApi.UseCaseFacade\GnuHiveApi.UseCaseFacade.csproj" />
@@ -36,11 +38,6 @@
       <Content Include="..\SharedConfig\appsettings.json">
         <Link>SharedConfig\appsettings.json</Link>
       </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Extensions\" />
-      <Folder Include="Models\" />
     </ItemGroup>
 
 </Project>

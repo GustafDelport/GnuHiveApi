@@ -1,5 +1,8 @@
 ﻿using Asp.Versioning;
+using GnuHiveApi.Domain.Common.Enums;
 using GnuHiveApi.UseCaseFacade.GreenHouse;
+using GnuHiveApi.WebApi.Extensions;
+using GnuHiveApi.WebApi.Models.GreenHouse;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GnuHiveApi.WebApi.Controllers;
@@ -16,27 +19,25 @@ public class GreenHouseController : ControllerBase
         this._greenHouseUseCaseFacade = greenHouseUseCaseFacade;
     }
 
-    [HttpPost("light/{state}")]
-    public async Task<IActionResult> ToggleLed(string state)
+    [HttpPost("set/module")]
+    public async Task<IActionResult> ToggleLight(
+        [FromBody] GreenHouseModuleInputModel inputModel)
     {
-        return this.Ok();
-    }
-    
-    [HttpPost("fan/{state}")]
-    public async Task<IActionResult> ToggleFan(string state)
-    {
-        return this.Ok();
-    }
-    
-    [HttpPost("pump/{state}")]
-    public async Task<IActionResult> TogglePump(string state)
-    {
-        return this.Ok();
+        var result = await this._greenHouseUseCaseFacade.SetGreenHouseModuleStateAsync(inputModel);
+        
+        return result.MatchFirst<IActionResult>(
+            _ => this.Ok(result.Value),
+            this.FromError);
     }
     
     [HttpGet("sensory-data")]
-    public IActionResult GetTemperature()
+    public async Task<IActionResult> GetTemperature()
     {
-        return this.Ok();
+        var today = DateTime.Today;
+        var result = await this._greenHouseUseCaseFacade.GetSensoryDataInRangeAsync(today.AddDays(-5), today);
+
+        return result.MatchFirst<IActionResult>(
+            _ => this.Ok(result.Value),
+            this.FromError);
     }
 }
