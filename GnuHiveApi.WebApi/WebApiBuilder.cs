@@ -59,14 +59,15 @@ public class WebApiBuilder
         
         builder.Services.AddSwaggerGen(o =>
         {
-            var filePath = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            o.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, filePath));
+            // TODO Fix this to have swagger comments
+            /*var filePath = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            o.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, filePath));*/
 
             o.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 
             o.OperationFilter<SwaggerDefaultValues>();
 
-            o.AddSecurityDefinition("Bearer",
+            /*o.AddSecurityDefinition("Bearer",
                 new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
@@ -85,7 +86,7 @@ public class WebApiBuilder
                     },
                     Array.Empty<string>()
                 }
-            });
+            });*/
 
             o.CustomSchemaIds(type => type.ToString());
         });
