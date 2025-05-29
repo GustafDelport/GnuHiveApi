@@ -2,8 +2,6 @@
 using GnuHiveApi.BackgroundProcessing.Constants;
 using GnuHiveApi.Common.config;
 using GnuHiveApi.Common.Extensions;
-using HiveMQtt.Client;
-using HiveMQtt.Client.Options;
 using Microsoft.Extensions.Hosting;
 using MQTTnet;
 using MQTTnet.Client;
@@ -24,16 +22,13 @@ public class MqttBackgroundService : BackgroundService
     {
         var factory = new MqttFactory();
         this._mqttClient = factory.CreateMqttClient();
-        
-        /*var options = new MqttClientOptionsBuilder()
-            .WithWebSocketServer(o => o.WithUri(this._config.HiveMq.WebSocket))
-            .Build();*/
 
         var options = new MqttClientOptionsBuilder()
             .WithClientId("dotnetClient")
-            .WithTcpServer(this._config.HiveMq.Url, this._config.HiveMq.Port) // Or use your broker IP and port
+            .WithTcpServer(this._config.HiveMq.Url, this._config.HiveMq.Port)
             .WithCredentials(this._config.HiveMq.UserName, this._config.HiveMq.Password)
             .WithCleanSession()
+            .WithTlsOptions(o => o.UseTls())
             .Build();
 
         this._mqttClient.ApplicationMessageReceivedAsync += e =>
