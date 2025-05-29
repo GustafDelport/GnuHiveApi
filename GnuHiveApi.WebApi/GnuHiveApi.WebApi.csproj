@@ -24,9 +24,11 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\GnuHiveApi.AntiCorruption\GnuHiveApi.AntiCorruption.csproj" />
       <ProjectReference Include="..\GnuHiveApi.BackgroundProcessing\GnuHiveApi.BackgroundProcessing.csproj" />
       <ProjectReference Include="..\GnuHiveApi.Common\GnuHiveApi.Common.csproj" />
       <ProjectReference Include="..\GnuHiveApi.Domain.Common\GnuHiveApi.Domain.Common.csproj" />
+      <ProjectReference Include="..\GnuHiveApi.Integrations\GnuHiveApi.Integrations.csproj" />
       <ProjectReference Include="..\GnuHiveApi.Persistence.Command\GnuHiveApi.Persistence.Command.csproj" />
       <ProjectReference Include="..\GnuHiveApi.Persistence\GnuHiveApi.Persistence.csproj" />
       <ProjectReference Include="..\GnuHiveApi.UseCaseFacade\GnuHiveApi.UseCaseFacade.csproj" />

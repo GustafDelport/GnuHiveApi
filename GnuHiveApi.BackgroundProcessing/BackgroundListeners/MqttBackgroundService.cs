@@ -10,7 +10,7 @@ namespace GnuHiveApi.BackgroundProcessing.BackgroundListeners;
 
 public class MqttBackgroundService : BackgroundService
 {
-    private IApplicationConfig _config;
+    private readonly IApplicationConfig _config;
     private IMqttClient? _mqttClient;
 
     public MqttBackgroundService(IApplicationConfig config)

@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\GnuHiveApi.AntiCorruption\GnuHiveApi.AntiCorruption.csproj" />
+    </ItemGroup>
+
 </Project>
