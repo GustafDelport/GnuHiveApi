@@ -38,6 +38,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GnuHiveApi.Domain.Common", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GreenHouse", "GreenHouse", "{FD5A54EF-5BF1-44F0-A1B7-31F6296052AC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GnuHiveApi.BackgroudProcessing", "GnuHiveApi.BackgroudProcessing\GnuHiveApi.BackgroudProcessing.csproj", "{7927DBD7-178E-4CE5-A5A3-420B2B2A6CD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GnuHiveApi.AntiCorruption", "GnuHiveApi.AntiCorruption\GnuHiveApi.AntiCorruption.csproj", "{95739D05-FEFE-44E6-87ED-A61E96C43FB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GnuHiveApi.Infrastructure", "GnuHiveApi.Infrastructure\GnuHiveApi.Infrastructure.csproj", "{B902F9AA-79B0-422B-A6F8-DCD54A417CF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GnuHiveApi.Integrations", "GnuHiveApi.Integrations\GnuHiveApi.Integrations.csproj", "{0E09E294-1EA0-4F53-99DF-3632D5C18450}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GnuHiveApi.ReadModels", "GnuHiveApi.ReadModels\GnuHiveApi.ReadModels.csproj", "{0DBCEEF7-6E3B-41DF-90DD-9A17E810AC8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GnuHiveApi.DomainServices", "GnuHiveApi.DomainServices\GnuHiveApi.DomainServices.csproj", "{C0775102-724B-4353-BA13-F88B49DA06F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,6 +108,30 @@ Global
 		{2AA69200-F433-4E0A-BEFF-140D02DC5471}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AA69200-F433-4E0A-BEFF-140D02DC5471}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AA69200-F433-4E0A-BEFF-140D02DC5471}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7927DBD7-178E-4CE5-A5A3-420B2B2A6CD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7927DBD7-178E-4CE5-A5A3-420B2B2A6CD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7927DBD7-178E-4CE5-A5A3-420B2B2A6CD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7927DBD7-178E-4CE5-A5A3-420B2B2A6CD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95739D05-FEFE-44E6-87ED-A61E96C43FB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95739D05-FEFE-44E6-87ED-A61E96C43FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95739D05-FEFE-44E6-87ED-A61E96C43FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95739D05-FEFE-44E6-87ED-A61E96C43FB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B902F9AA-79B0-422B-A6F8-DCD54A417CF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B902F9AA-79B0-422B-A6F8-DCD54A417CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B902F9AA-79B0-422B-A6F8-DCD54A417CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B902F9AA-79B0-422B-A6F8-DCD54A417CF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E09E294-1EA0-4F53-99DF-3632D5C18450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E09E294-1EA0-4F53-99DF-3632D5C18450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E09E294-1EA0-4F53-99DF-3632D5C18450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E09E294-1EA0-4F53-99DF-3632D5C18450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DBCEEF7-6E3B-41DF-90DD-9A17E810AC8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DBCEEF7-6E3B-41DF-90DD-9A17E810AC8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DBCEEF7-6E3B-41DF-90DD-9A17E810AC8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DBCEEF7-6E3B-41DF-90DD-9A17E810AC8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0775102-724B-4353-BA13-F88B49DA06F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0775102-724B-4353-BA13-F88B49DA06F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0775102-724B-4353-BA13-F88B49DA06F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0775102-724B-4353-BA13-F88B49DA06F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{11E4A3F6-DFEB-4014-823D-10330A270331} = {42ED6CC4-CCDF-4ECD-A796-806FFDBC63A8}

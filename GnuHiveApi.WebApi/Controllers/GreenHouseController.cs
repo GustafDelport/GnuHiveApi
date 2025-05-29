@@ -18,12 +18,23 @@ public class GreenHouseController : ControllerBase
     {
         this._greenHouseUseCaseFacade = greenHouseUseCaseFacade;
     }
-
-    [HttpPost("set/module")]
-    public async Task<IActionResult> ToggleLight(
-        [FromBody] GreenHouseModuleInputModel inputModel)
+    
+    [HttpPost("module")]
+    public async Task<IActionResult> SetModule(
+        [FromBody] GreenHouseModuleValuesInputModel inputModel)
     {
         var result = await this._greenHouseUseCaseFacade.SetGreenHouseModuleStateAsync(inputModel);
+        
+        return result.MatchFirst<IActionResult>(
+            _ => this.Ok(result.Value),
+            this.FromError);
+    }
+
+    [HttpPost("modules")]
+    public async Task<IActionResult> SetModules(
+        [FromBody] GreenHouseModuleInputModel inputModel)
+    {
+        var result = await this._greenHouseUseCaseFacade.SetGreenHouseModulesStateAsync(inputModel);
         
         return result.MatchFirst<IActionResult>(
             _ => this.Ok(result.Value),
