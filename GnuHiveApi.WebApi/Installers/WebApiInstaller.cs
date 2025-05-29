@@ -7,6 +7,7 @@ using GnuHiveApi.Common.Logging;
 using GnuHiveApi.Common.Utils;
 using GnuHiveApi.Persistence.Command;
 using GnuHiveApi.Persistence.Common;
+using GnuHiveApi.UseCaseFacade.GreenHouse;
 using GnuHiveApi.WebApi.Swagger;
 using Microsoft.Extensions.Options;
 using NLog;
@@ -85,7 +86,7 @@ public abstract class WebApiInstaller
     
     protected virtual void RegisterFacade(IServiceCollection services)
     {
-        // TODO Add when needed
+        services.AddScoped<IGreenHouseUseCaseFacade, GreenHouseUseCaseFacade>();
     }
     
     protected virtual void RegisterWebApi(IServiceCollection services)
