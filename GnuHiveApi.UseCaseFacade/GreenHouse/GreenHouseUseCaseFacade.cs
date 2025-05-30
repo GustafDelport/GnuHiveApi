@@ -23,23 +23,7 @@ public class GreenHouseUseCaseFacade : IGreenHouseUseCaseFacade
         return Error.Unexpected(description: "Something went wrong");
     }
 
-    public async Task<ErrorOr<Success>> SetGreenHouseModuleStateAsync(IGreenHouseModuleValuesInputModel inputModel)
-    {
-        var genericMessage = JsonSerializer.Serialize(inputModel);
-        
-        var publishResult = await this._mqttPublisherService.SetModuleStateAsync(genericMessage, MqttTopics.GreenHouseSetModuleState);
-
-        if (publishResult.IsError)
-        {
-            //this._logger.Error(publishResult.FirstError);
-            return publishResult.FirstError;
-        }
-
-        //this._logger.Info($"Message: {genericMessage} => publish result: {publishResult.Value}");
-        return Result.Success;
-    }
-
-    public async Task<ErrorOr<Success>> SetGreenHouseModulesStateAsync(IGreenHouseModuleInputModel inputModel)
+    public async Task<ErrorOr<Success>> SetGreenHouseModuleStateAsync(IGreenHouseModuleInputModel inputModel)
     {
         var genericMessage = JsonSerializer.Serialize(inputModel);
         
