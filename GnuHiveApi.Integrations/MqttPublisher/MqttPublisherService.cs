@@ -37,8 +37,8 @@ public class MqttPublisherService : IMqttPublisherService
         
         var options = new MqttClientOptionsBuilder()
             .WithClientId("dotnetClient")
-            .WithTcpServer(this._config.HiveMq.Url, this._config.HiveMq.Port)
-            .WithCredentials(this._config.HiveMq.UserName, this._config.HiveMq.Password)
+            .WithTcpServer(this._config.MqttConfig.Url, this._config.MqttConfig.Port)
+            .WithCredentials(this._config.MqttConfig.UserName, this._config.MqttConfig.Password)
             .WithCleanSession()
             .WithTlsOptions(o => o.UseTls())
             .Build();

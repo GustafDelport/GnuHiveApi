@@ -1,6 +1,6 @@
 ﻿namespace GnuHiveApi.Common.config;
 
-public interface IHiveMqConfig
+public interface IMqttConfig
 {
     string UserName { get; }
     string Password { get; }

@@ -18,5 +18,5 @@ public class ApplicationConfig : IApplicationConfig
     public string SwaggerContextRoot => this._configuration["Swagger:ContextRoot"]!;
     public Microsoft.Extensions.Logging.LogLevel LogLevel => Enum.Parse<Microsoft.Extensions.Logging.LogLevel>(this._configuration["Logging:LogLevel:Default"]!);
     public ILoggingConfig Logging => new AppLoggingConfig(this._configuration);
-    public IHiveMqConfig HiveMq => new HiveMqConfig(this._configuration);
+    public IMqttConfig MqttConfig => new MqttConfig(this._configuration);
 }

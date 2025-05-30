@@ -2,10 +2,10 @@
 
 namespace GnuHiveApi.Common.config;
 
-public class HiveMqConfig : IHiveMqConfig {
+public class MqttConfig : IMqttConfig {
     private readonly IConfiguration _configuration;
 
-    public HiveMqConfig(IConfiguration configuration)
+    public MqttConfig(IConfiguration configuration)
     {
         this._configuration = configuration;
     }
