@@ -1,10 +1,13 @@
 ﻿using System.Reflection;
+using GnuHiveApi.AntiCorruption.MqttPublisher;
+using GnuHiveApi.BackgroundProcessing.BackgroundListeners;
 using GnuHiveApi.Common;
 using GnuHiveApi.Common.config;
 using GnuHiveApi.Common.DateTime;
 using GnuHiveApi.Common.Extensions;
 using GnuHiveApi.Common.Logging;
 using GnuHiveApi.Common.Utils;
+using GnuHiveApi.Integrations.MqttPublisher;
 using GnuHiveApi.Persistence.Command;
 using GnuHiveApi.Persistence.Common;
 using GnuHiveApi.UseCaseFacade.GreenHouse;
@@ -81,7 +84,7 @@ public abstract class WebApiInstaller
     
     protected virtual void RegisterIntegrations(IServiceCollection services)
     {
-        // TODO Add when needed
+        services.AddScoped<IMqttPublisherService, MqttPublisherService>();
     }
     
     protected virtual void RegisterFacade(IServiceCollection services)
@@ -177,6 +180,7 @@ public abstract class WebApiInstaller
     protected virtual void RegistrationBackgroundJobs(IServiceCollection services)
     {
         // TODO Add when needed
+        services.AddHostedService<MqttBackgroundService>();
     }
     
     protected virtual void RegisterDomainServices(IServiceCollection services)

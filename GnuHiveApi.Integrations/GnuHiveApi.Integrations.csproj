@@ -6,4 +6,17 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\GnuHiveApi.AntiCorruption\GnuHiveApi.AntiCorruption.csproj" />
+      <ProjectReference Include="..\GnuHiveApi.Common\GnuHiveApi.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="MqttPublisher\Models\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MQTTnet" Version="4.3.7.1207" />
+    </ItemGroup>
+
 </Project>

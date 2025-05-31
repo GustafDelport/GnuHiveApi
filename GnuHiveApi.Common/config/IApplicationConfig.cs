@@ -8,4 +8,5 @@ public interface IApplicationConfig
     string SwaggerContextRoot { get; }
     Microsoft.Extensions.Logging.LogLevel LogLevel { get; }
     ILoggingConfig Logging { get; }
+    IMqttConfig MqttConfig { get; }
 }

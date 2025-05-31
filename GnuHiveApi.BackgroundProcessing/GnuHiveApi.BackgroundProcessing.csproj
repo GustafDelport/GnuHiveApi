@@ -7,13 +7,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="ErrorOr" Version="2.0.1" />
+      <Reference Include="Microsoft.Extensions.Hosting.Abstractions">
+        <HintPath>..\..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.15\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GnuHiveApi.AntiCorruption\GnuHiveApi.AntiCorruption.csproj" />
       <ProjectReference Include="..\GnuHiveApi.Common\GnuHiveApi.Common.csproj" />
-      <ProjectReference Include="..\GnuHiveApi.Domain.Common\GnuHiveApi.Domain.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MQTTnet" Version="4.*" />
     </ItemGroup>
 
 </Project>

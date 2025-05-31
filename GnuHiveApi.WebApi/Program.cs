@@ -60,6 +60,8 @@ app.UseSwaggerUI(b =>
     }
 });
 
+app.MapGet("/", () => "MQTT Listener Running");
+
 app.MapControllers();
 
 ServicePointManager.SecurityProtocol =
