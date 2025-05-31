@@ -51,7 +51,14 @@ public class MqttPublisherService : IMqttPublisherService
         try
         {
             await this._mqttClient.ConnectAsync(options);
+            Console.WriteLine("Connected to mqtt");
+            
             await this._mqttClient.PublishAsync(message);
+            Console.WriteLine("Message published");
+            
+            await this._mqttClient.DisconnectAsync();
+            Console.WriteLine("Disconnected from mqtt");
+            
             return Result.Success;
         }
         catch (Exception ex)

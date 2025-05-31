@@ -34,10 +34,8 @@ public class GreenHouseController : ControllerBase
     [HttpPost("nodes/{nodeId}/data")]
     public async Task<IActionResult> ReceiveNodeData(
         int nodeId,
-        [FromBody] GreenHouseNodeDataInputModel inputModel
-        )
+        [FromBody] GreenHouseNodeDataInputModel inputModel)
     {
-        var today = DateTime.Today;
         var result = await this._greenHouseUseCaseFacade.ReceiveGreenHouseDataAsync(nodeId, inputModel); 
 
         return result.MatchFirst<IActionResult>(
