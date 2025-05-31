@@ -31,7 +31,7 @@ public class GreenHouseController : ControllerBase
             this.FromError);
     }
     
-    [HttpPost("nodes/{nodeId}/data")]
+    /*[HttpPost("nodes/{nodeId}/data")]
     public async Task<IActionResult> ReceiveNodeData(
         int nodeId,
         [FromBody] GreenHouseNodeDataInputModel inputModel)
@@ -41,7 +41,7 @@ public class GreenHouseController : ControllerBase
         return result.MatchFirst<IActionResult>(
             _ => this.Ok(result.Value),
             this.FromError);
-    }
+    }*/
     
     [HttpGet("nodes/{nodeId}/data")]
     public async Task<IActionResult> GetNodeData(int nodeId)

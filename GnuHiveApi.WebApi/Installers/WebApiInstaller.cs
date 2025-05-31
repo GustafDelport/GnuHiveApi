@@ -180,7 +180,7 @@ public abstract class WebApiInstaller
     protected virtual void RegistrationBackgroundJobs(IServiceCollection services)
     {
         // TODO Add when needed
-        // services.AddHostedService<MqttBackgroundService>();
+        services.AddHostedService<MqttBackgroundService>();
     }
     
     protected virtual void RegisterDomainServices(IServiceCollection services)
