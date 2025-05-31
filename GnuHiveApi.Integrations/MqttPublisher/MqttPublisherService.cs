@@ -36,7 +36,7 @@ public class MqttPublisherService : IMqttPublisherService
         this._mqttClient = factory.CreateMqttClient();
         
         var options = new MqttClientOptionsBuilder()
-            .WithClientId("dotnetClient")
+            .WithClientId("GnuHiveApi")
             .WithTcpServer(this._config.MqttConfig.Url, this._config.MqttConfig.Port)
             .WithCredentials(this._config.MqttConfig.UserName, this._config.MqttConfig.Password)
             .WithCleanSession()
@@ -51,7 +51,14 @@ public class MqttPublisherService : IMqttPublisherService
         try
         {
             await this._mqttClient.ConnectAsync(options);
+            Console.WriteLine("Connected to mqtt");
+            
             await this._mqttClient.PublishAsync(message);
+            Console.WriteLine("Message published");
+            
+            /*await this._mqttClient.DisconnectAsync();
+            Console.WriteLine("Disconnected from mqtt");*/
+            
             return Result.Success;
         }
         catch (Exception ex)
