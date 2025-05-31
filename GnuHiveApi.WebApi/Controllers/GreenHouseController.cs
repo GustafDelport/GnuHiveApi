@@ -19,44 +19,49 @@ public class GreenHouseController : ControllerBase
         this._greenHouseUseCaseFacade = greenHouseUseCaseFacade;
     }
     
-    [HttpPost("module")]
-    public async Task<IActionResult> SetModule(
+    [HttpPost("nodes/{nodeId}/module")]
+    public async Task<IActionResult> SetNodeModule(
+        int nodeId,
         [FromBody] GreenHouseModuleInputModel inputModel)
     {
-        var result = await this._greenHouseUseCaseFacade.SetGreenHouseModuleStateAsync(inputModel);
+        var result = await this._greenHouseUseCaseFacade.SetGreenHouseModuleStateAsync(nodeId, inputModel);
         
         return result.MatchFirst<IActionResult>(
             _ => this.Ok(result.Value),
             this.FromError);
     }
     
-    [HttpPost("node/{nodeId}/data")]
-    public async Task<IActionResult> GetTemperature()
+    [HttpPost("nodes/{nodeId}/data")]
+    public async Task<IActionResult> ReceiveNodeData(
+        int nodeId,
+        [FromBody] GreenHouseNodeDataInputModel inputModel
+        )
     {
         var today = DateTime.Today;
-        var result = await this._greenHouseUseCaseFacade.GetSensoryDataInRangeAsync(today.AddDays(-5), today);
+        var result = await this._greenHouseUseCaseFacade.ReceiveGreenHouseDataAsync(nodeId, inputModel); 
 
         return result.MatchFirst<IActionResult>(
             _ => this.Ok(result.Value),
             this.FromError);
     }
     
-    [HttpGet("sensory-data")]
-    public async Task<IActionResult> GetSensorDatas()
+    [HttpGet("nodes/{nodeId}/data")]
+    public async Task<IActionResult> GetNodeData(int nodeId)
     {
         var today = DateTime.Today;
-        var result = await this._greenHouseUseCaseFacade.GetSensoryDataInRangeAsync(today.AddDays(-5), today);
+        var result = await this._greenHouseUseCaseFacade.GetGreenHouseNodeDataAsyncAsync(nodeId,
+            today.AddDays(-5), today);
 
         return result.MatchFirst<IActionResult>(
             _ => this.Ok(result.Value),
             this.FromError);
     }
     
-    [HttpGet("sensory-data")]
-    public async Task<IActionResult> GetSensorData()
+    [HttpGet("nodes/data")]
+    public async Task<IActionResult> GetAllNodesData()
     {
         var today = DateTime.Today;
-        var result = await this._greenHouseUseCaseFacade.GetSensoryDataInRangeAsync(today.AddDays(-5), today);
+        var result = await this._greenHouseUseCaseFacade.GetGreenHouseNodesDataAsyncAsync(today.AddDays(-5), today);
 
         return result.MatchFirst<IActionResult>(
             _ => this.Ok(result.Value),
