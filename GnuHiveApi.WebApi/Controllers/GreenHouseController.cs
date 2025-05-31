@@ -30,8 +30,30 @@ public class GreenHouseController : ControllerBase
             this.FromError);
     }
     
-    [HttpGet("sensory-data")]
+    [HttpPost("node/{nodeId}/data")]
     public async Task<IActionResult> GetTemperature()
+    {
+        var today = DateTime.Today;
+        var result = await this._greenHouseUseCaseFacade.GetSensoryDataInRangeAsync(today.AddDays(-5), today);
+
+        return result.MatchFirst<IActionResult>(
+            _ => this.Ok(result.Value),
+            this.FromError);
+    }
+    
+    [HttpGet("sensory-data")]
+    public async Task<IActionResult> GetSensorDatas()
+    {
+        var today = DateTime.Today;
+        var result = await this._greenHouseUseCaseFacade.GetSensoryDataInRangeAsync(today.AddDays(-5), today);
+
+        return result.MatchFirst<IActionResult>(
+            _ => this.Ok(result.Value),
+            this.FromError);
+    }
+    
+    [HttpGet("sensory-data")]
+    public async Task<IActionResult> GetSensorData()
     {
         var today = DateTime.Today;
         var result = await this._greenHouseUseCaseFacade.GetSensoryDataInRangeAsync(today.AddDays(-5), today);
